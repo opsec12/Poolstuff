@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pool Maintenance Checklist</title>
+<style>
+  :root {
+    --blue: #1a6fa8;
+    --blue-dark: #0d4a73;
+    --bg: #f4f8fb;
+    --card: #ffffff;
+    --border: #dde6ec;
+    --text: #223;
+    --muted: #5a6b78;
+    --warn-bg: #fff4e5;
+    --warn-border: #f0b955;
+    --danger-bg: #fdeaea;
+    --danger-border: #e0645a;
+    --ok-bg: #eaf7ee;
+    --ok-border: #57a86b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  header {
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: #fff;
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 0.4rem; font-size: 1.8rem; }
+  header p { margin: 0; opacity: 0.9; font-size: 0.95rem; }
+  main {
+    max-width: 820px;
+    margin: -1.5rem auto 3rem;
+    padding: 0 1rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem 1.6rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(20, 40, 60, 0.06);
+  }
+  .card h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    color: var(--blue-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--blue);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+  .valve-wrap {
+    text-align: center;
+    margin: 1rem 0 1.4rem;
+  }
+  .valve-wrap img {
+    max-width: 320px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .valve-wrap figcaption {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+  ol.steps, ul.steps {
+    padding-left: 0;
+    list-style: none;
+    margin: 0.5rem 0 0;
+  }
+  ol.steps li, ul.steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  ol.steps li:last-child, ul.steps li:last-child { border-bottom: none; }
+  .step-num {
+    flex: none;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: var(--blue);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.1rem;
+  }
+  label.check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    cursor: pointer;
+    flex: 1;
+  }
+  label.check input {
+    margin-top: 0.25rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    accent-color: var(--blue);
+    flex: none;
+  }
+  label.check span { flex: 1; }
+  .note {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 0.9rem 0;
+    font-size: 0.92rem;
+  }
+  .note.warn { background: var(--warn-bg); border: 1px solid var(--warn-border); }
+  .note.danger { background: var(--danger-bg); border: 1px solid var(--danger-border); }
+  .note.ok { background: var(--ok-bg); border: 1px solid var(--ok-border); }
+  .note strong { display: block; margin-bottom: 0.15rem; }
+  .schedule-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.6rem 0 0;
+  }
+  .schedule-pills span {
+    background: #eaf2f8;
+    border: 1px solid var(--border);
+    color: var(--blue-dark);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+  .reset-row {
+    text-align: center;
+    margin: -0.5rem 0 2rem;
+  }
+  .reset-row button {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .reset-row button:hover { background: #eef3f7; }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding-bottom: 2rem;
+  }
+  input:checked + span { text-decoration: line-through; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏊 Pool Maintenance Checklist</h1>
+  <p>Filter cleaning &amp; chemical routine</p>
+</header>
+
+<main>
+
+  <div class="card">
+    <h2>Weekly Schedule <span class="badge">Overview</span></h2>
+    <div class="schedule-pills">
+      <span>Mon &amp; Fri, after sundown — Filter cleaning + Shock</span>
+      <span>Tue morning — Algicide</span>
+    </div>
+    <div class="note danger">
+      <strong>⚠️ Before you start</strong>
+      Check the water level first. If it's too low, it can damage the pump. Fill to the top, but don't overfill.
+    </div>
+    <div class="note warn">
+      <strong>⚡ Safety</strong>
+      Charge the handheld vacuum ahead of time, and be careful of electric shock while working around the pool and equipment.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>1. Filter Valve — Backwash Cycle <span class="badge">Mon &amp; Fri</span></h2>
+    <figure class="valve-wrap">
+      <svg viewBox="0 0 400 400" role="img" aria-label="Sand filter multiport valve diagram showing Filter, Rinse, Waste, Closed, Backwash, Winter, and Recirculate positions" style="max-width:320px;width:100%;">
+        <polygon points="200,20 320,66 366,186 320,306 200,352 80,306 34,186 80,66"
+          fill="#0f0f10" stroke="#050505" stroke-width="3"/>
+        <circle cx="200" cy="186" r="140" fill="#b9d8d3"/>
+        <circle cx="76" cy="66" r="9" fill="#c7cdd2" stroke="#8b939a" stroke-width="2"/>
+        <circle cx="324" cy="66" r="9" fill="#c7cdd2" stroke="#8b939a" stroke-width="2"/>
+        <circle cx="76" cy="306" r="9" fill="#c7cdd2" stroke="#8b939a" stroke-width="2"/>
+        <circle cx="324" cy="306" r="9" fill="#c7cdd2" stroke="#8b939a" stroke-width="2"/>
+        <rect x="10" y="170" width="40" height="32" rx="4" fill="#0f0f10"/>
+        <rect x="350" y="170" width="40" height="32" rx="4" fill="#0f0f10"/>
+        <text x="147" y="80" font-size="15" font-weight="700" fill="#0d4a73" text-anchor="middle">RINSE</text>
+        <text x="147" y="96" font-size="9" fill="#3a4a52" text-anchor="middle">RINCAGE / ENJUAGE</text>
+        <text x="255" y="98" font-size="15" font-weight="700" fill="#0d4a73" text-anchor="middle">FILTER</text>
+        <text x="255" y="114" font-size="9" fill="#3a4a52" text-anchor="middle">FILTRATION / FILTRACION</text>
+        <text x="78" y="150" font-size="12" font-weight="700" fill="#1a2733" text-anchor="middle">RECIRCULATE</text>
+        <text x="78" y="163" font-size="8" fill="#4a5760" text-anchor="middle">CIRCULATION / RECIRCULAR</text>
+        <text x="78" y="222" font-size="12" font-weight="700" fill="#1a2733" text-anchor="middle">WINTER</text>
+        <text x="78" y="235" font-size="8" fill="#4a5760" text-anchor="middle">HIVER / INVIERNO</text>
+        <text x="108" y="288" font-size="12" font-weight="700" fill="#1a2733" text-anchor="middle">BACKWASH</text>
+        <text x="108" y="301" font-size="8" fill="#4a5760" text-anchor="middle">LAVAGE / LAVADO</text>
+        <text x="300" y="288" font-size="12" font-weight="700" fill="#1a2733" text-anchor="middle">CLOSED</text>
+        <text x="300" y="301" font-size="8" fill="#4a5760" text-anchor="middle">FERME / CERRADO</text>
+        <text x="322" y="222" font-size="12" font-weight="700" fill="#1a2733" text-anchor="middle">WASTE</text>
+        <text x="322" y="235" font-size="8" fill="#4a5760" text-anchor="middle">EGOUT / DESAGUE</text>
+        <g transform="rotate(20 200 186)">
+          <rect x="196" y="70" width="8" height="126" rx="4" fill="#111214"/>
+          <ellipse cx="200" cy="186" rx="34" ry="30" fill="#111214"/>
+          <path d="M200 90 L280 40 Q300 28 310 46 L320 66 Q328 84 306 92 L214 130 Z" fill="#161719" stroke="#000" stroke-width="1"/>
+        </g>
+        <circle cx="200" cy="186" r="16" fill="#1a1b1d"/>
+      </svg>
+      <figcaption>Multiport valve — turn handle to <strong>Backwash</strong> for 5–10s, then back to <strong>Filter</strong>.</figcaption>
+    </figure>
+    <ol class="steps">
+      <li><span class="step-num">1</span><label class="check"><input type="checkbox" data-key="v1"><span>Turn off the sand filter pump.</span></label></li>
+      <li><span class="step-num">2</span><label class="check"><input type="checkbox" data-key="v2"><span>Switch the valve handle to <strong>Backwash</strong>.</span></label></li>
+      <li><span class="step-num">3</span><label class="check"><input type="checkbox" data-key="v3"><span>Turn the pump back on and let it backwash for <strong>5–10 seconds</strong>.</span></label></li>
+      <li><span class="step-num">4</span><label class="check"><input type="checkbox" data-key="v4"><span>Turn off the pump again, switch the valve back to <strong>Filter</strong>.</span></label></li>
+      <li><span class="step-num">5</span><label class="check"><input type="checkbox" data-key="v5"><span>Turn the pump back on in Filter mode.</span></label></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>2. Skimmer Basket &amp; Filter Tablets <span class="badge">Mon &amp; Fri</span></h2>
+    <ol class="steps">
+      <li><span class="step-num">1</span><label class="check"><input type="checkbox" data-key="b1"><span>Empty the skimmer basket.</span></label></li>
+      <li><span class="step-num">2</span><label class="check"><input type="checkbox" data-key="b2"><span>Check the filter — refill the clarifier tablet and chlorine tablet if needed.</span></label></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>3. Vacuum the Pool <span class="badge">Mon &amp; Fri</span></h2>
+    <ol class="steps">
+      <li><span class="step-num">1</span><label class="check"><input type="checkbox" data-key="c1"><span>Use the handheld cleaner gently.</span></label></li>
+      <li><span class="step-num">2</span><label class="check"><input type="checkbox" data-key="c2"><span>Vacuum the sand off the bottom of the pool.</span></label></li>
+      <li><span class="step-num">3</span><label class="check"><input type="checkbox" data-key="c3"><span>The bag fills (turns red) quickly — empty and replace it with a new one. Expect to do this <strong>5–6 times</strong>.</span></label></li>
+    </ol>
+    <div class="note ok">
+      <strong>✅ After cleaning</strong>
+      Once the filter, basket, and vacuuming are done, it's safe to swim.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>4. Shock Treatment <span class="badge">Mon &amp; Fri, after dark</span></h2>
+    <ol class="steps">
+      <li><span class="step-num">1</span><label class="check"><input type="checkbox" data-key="s1"><span>Walk around the pool and slowly dump <strong>1 pack of shock</strong> around the edges.</span></label></li>
+      <li><span class="step-num">2</span><label class="check"><input type="checkbox" data-key="s2"><span>Pour about <strong>8 fl oz of liquid shock</strong> into the filter.</span></label></li>
+      <li><span class="step-num">3</span><label class="check"><input type="checkbox" data-key="s3"><span>Let it filter for <strong>2–4 hours</strong>.</span></label></li>
+      <li><span class="step-num">4</span><label class="check"><input type="checkbox" data-key="s4"><span>Dilute <strong>4 fl oz of clarifier</strong> in a bucket of pool water, then pour it around the pool.</span></label></li>
+    </ol>
+    <div class="note warn">
+      <strong>Note</strong>
+      Clarifier is highly concentrated — add a bit more if the pool looks cloudy.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>5. Algicide <span class="badge">Tuesday morning only</span></h2>
+    <ol class="steps">
+      <li><span class="step-num">1</span><label class="check"><input type="checkbox" data-key="a1"><span>Add <strong>half a bottle of algicide</strong> to the pool.</span></label></li>
+    </ol>
+  </div>
+
+  <div class="reset-row">
+    <button onclick="resetChecklist()">Reset checklist</button>
+  </div>
+
+</main>
+
+<footer>
+  Pool maintenance routine — checkboxes save automatically in this browser.
+</footer>
+
+<script>
+  document.querySelectorAll('input[type="checkbox"][data-key]').forEach(function(box) {
+    var key = 'pool-' + box.dataset.key;
+    box.checked = localStorage.getItem(key) === '1';
+    box.addEventListener('change', function() {
+      localStorage.setItem(key, box.checked ? '1' : '0');
+    });
+  });
+  function resetChecklist() {
+    document.querySelectorAll('input[type="checkbox"][data-key]').forEach(function(box) {
+      box.checked = false;
+      localStorage.removeItem('pool-' + box.dataset.key);
+    });
+  }
+</script>
+
+</body>
+</html>
